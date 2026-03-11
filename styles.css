@@ -69,6 +69,123 @@ form {
     max-height: 500px;
 }
 
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between ;
+    text-align: left;
+    padding-inline: 20px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #f4e6fb;
+    border-radius: 5%;
+    box-shadow: 0 4px 15px rgba(230, 179, 254, 0.3);
+    padding-top: 25px;
+    margin-top: 20px;
+    width: 400px;
+}
+
+.profile-bio {
+    margin-left: 20px;
+    padding: 20px;
+    font-size: 17px;
+    color: #555;
+    border: 2px solid #f4e6fb;
+    border-radius: 3%;
+    box-shadow: 0 4px 15px rgba(230, 179, 254, 0.3);
+    min-width: 300px;
+    margin-bottom: 15px;
+    padding-top: 25px;
+    margin-top: 20px;
+}
+
+.profile-info img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.profile-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    min-width: 300px;
+    justify-content: center;
+    align-items: center;
+}
+
+.published-blogs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.blog-card {
+    border: 2px solid #d096ff;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    height: 100%;
+    min-height: 100px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(167, 116, 191, 0.4);
+}
+
+.blogs-number,
+.likes-number,
+.views-numbers,
+.comments-number {
+    font-size: 28px;
+    font-weight: bold;
+    color: #4b016d;
+    margin-bottom: 10px;
+}
+
+.fa-brands.fa-blogger,
+.fa-solid.fa-heart,
+.fa-solid.fa-eye,
+.fa-solid.fa-comments {
+    font-size: 30px;
+    color: #d096ff;
+}
+
+.published-blogs .blog-card {
+    position: relative;
+}
+
+.published-blogs .blog-icon {
+    position: absolute;
+    
+}
+
+.top-blogs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    font-style: italic;
+}
+
 .image-container img {
     max-height: 450px;
     width: auto;
@@ -133,6 +250,31 @@ button:active {
     box-shadow: 0 5px 15px rgba(167, 116, 191, 0.3);
 }
 
+.button {
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: linear-gradient(to right, #d096ff, #f5d9ff);
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.button:hover {
+    background: linear-gradient(to right, #c77dff, #edbfff);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(167, 116, 191, 0.35);
+    color: inherit;
+}
+
 a {
     text-decoration: none;
     color: #4b016d;
@@ -183,6 +325,63 @@ p {
 
     .form-container {
         padding: 30px 20px;
+    }
+}
+
+/* Profile Page Responsive Styles */
+@media (max-width: 900px) {
+    .profile-container {
+        flex-direction: column;
+        padding: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .profile {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .profile-info img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .profile-bio {
+        margin-left: 0;
+        margin-top: 20px;
+        min-width: auto;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .profile-buttons {
+        flex-direction: column;
+        min-width: auto;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .published-blogs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .blog-card {
+        min-height: 80px;
+    }
+
+    .blogs-number,
+    .likes-number,
+    .views-numbers,
+    .comments-number {
+        font-size: 20px;
+    }
+
+    .fa-brands.fa-blogger,
+    .fa-solid.fa-heart,
+    .fa-solid.fa-eye,
+    .fa-solid.fa-comments {
+        font-size: 24px;
     }
 }
 
