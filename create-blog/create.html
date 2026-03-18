@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog</title>
+    <link rel="stylesheet" href="create-blog-styles.css"/>
+    <link rel="stylesheet" href="../styles.css"/>
+    <script src="blog-script.js"></script>
+    <script src="../script.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../profile.html">Profile</a></li>
+                <li><a href="../contactus.html">Contact Us</a></li>
+                <li><a href="create.html" class="active">Create Blog</a></li>
+            </ul>
+            <a href="profile.html" class="header-profile">
+                <div class="header-avatar"></div>
+            </a>
+        </nav>
+    </header>
+    <main>
+        <section class="blog-header">
+            <h2>Welcome to the Blog Creation Page!</h2>
+            <p>Share your thoughts, ideas, and stories with the world. Whether you're a seasoned writer or just starting out, this is the perfect place to express yourself and connect with readers.</p>
+        </section>
+        <section class="blog-form-container">
+            <form class="blog-form">
+                <div class="blog-title">
+                    <label for="title">Blog Title:</label>
+                    <input type="text" id="title" name="title">
+                </div>
+                <div class="blog-category">
+                    <label for="category">Category:</label>
+                    <select id="category-dropdown" name="category">
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="technology">Technology</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="travel">Travel</option>
+                        <option value="food">Food</option>
+                        <option value="health">Health</option>
+                    </select>
+                </div>
+                <div class="blog-image">
+                    <!-- Radio buttons -->
+                    <div class="image-choice">
+                        <label>Image Source:</label>
+                        <label><input type="radio" name="imageType" value="url" checked> URL</label>
+                        <label><input type="radio" name="imageType" value="file"> File</label>
+                    </div>
+
+                    <div id="url" class="url-image">
+                        <label>Upload image by pasting its URL</label>
+                        <input type="url" id="image-url" name="url">
+                    </div>
+                    <div id="file" class="file-image">
+                        <label for="image-file">Upload image by choosing a file</label>
+                        <input type="file" id="image-file" name="image" accept="image/*">
+                    </div>
+
+                    <!-- LIVE IMAGE PREVIEW -->
+                    <div id="image-preview" class="image-preview"></div>
+                </div>
+
+                <div class="blog-content">
+                    <label for="content">Content:</label>
+                    <textarea id="content" name="content" placeholder="What's in your mind.."></textarea>
+                </div>
+
+                <button type="submit">Publish</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>

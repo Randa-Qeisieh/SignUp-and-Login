@@ -1,0 +1,133 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: grid;
+    gap: 20px;
+}
+
+.blog-header {
+    font-size: 17px;
+    text-align: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blog-form-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 10px auto;
+    padding: 20px;
+    border: 2px solid #f4e6fb;
+    border-radius: 2%;
+    box-shadow: 0 4px 15px rgba(230, 179, 254, 0.195);
+    background: white;
+}
+
+/* Your old form grid - now flexible and wider */
+.blog-form { 
+    display: grid; 
+    gap: 15px; 
+    padding: 10px;
+    max-width: 900px;     
+}
+
+.blog-title,
+.blog-category,
+.blog-image {
+    width: 100%;
+}
+
+.blog-category {
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.category-dropdown {
+    margin: 10px;
+}
+
+.blog-content {
+    width: 100%;
+}
+
+/* ====================== IMAGE + RADIO + PREVIEW STYLING (NEW) ====================== */
+.image-choice {
+    display: flex;
+    gap: 25px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.image-choice label {
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.image-choice input[type="radio"] {
+    accent-color: #6366f1;
+}
+
+.url-image label,
+.file-image label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.url-image input,
+.file-image input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #f4e6fb;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Live Preview Box */
+.image-preview {
+    margin-top: 20px;
+    text-align: center;
+    padding: 15px;
+    border: 2px dashed #f4e6fb;
+    border-radius: 12px;
+    background: #fafafa;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(230, 179, 254, 0.3);
+}
+
+/* Wider inputs for left side */
+.blog-title input,
+.blog-category select,
+.blog-content textarea {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #f4e6fb;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.blog-content textarea {
+    height: 600px;
+    width: 100%;
+    resize: vertical;
+}

@@ -12,6 +12,12 @@ body {
     background-size: 200% 200%;
     animation: gradientShift 8s ease infinite;
     font-family: 'Times New Roman', Times, serif;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    margin: 0;
+    position: relative;
+    padding-top: 60px; /* To prevent content from being hidden behind the fixed header */
+    padding-bottom: 60px; /* To prevent content from being hidden behind the fixed footer */    
 }
 
 @keyframes gradientShift {
@@ -92,22 +98,24 @@ form {
     padding-top: 25px;
     margin-top: 20px;
     width: 400px;
+    height: 65vh;
 }
 
 .profile-bio {
     flex: 1;
-    height: auto;
+    height: 73.5vh;
     margin-left: 20px;
-    padding: 20px;
+    margin-top: 20px;
+    padding: 25px;
+    margin-bottom: 15px;
+    padding-top: 25px;
+    margin-top: 20px;
     font-size: 17px;
     color: #555;
     border: 2px solid #f4e6fb;
     border-radius: 3%;
     box-shadow: 0 4px 15px rgba(230, 179, 254, 0.3);
     min-width: 300px;
-    margin-bottom: 15px;
-    padding-top: 25px;
-    margin-top: 20px;
 }
 
 .profile-info img {
@@ -160,7 +168,7 @@ form {
 .profile-buttons {
     display: flex;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 15px;
     min-width: 300px;
     justify-content: center;
     align-items: center;
@@ -174,7 +182,7 @@ form {
 }
 
 .blog-card {
-    border: 2px solid #d096 Asc ff;
+    border: 2px solid #f4e6fb;;
     border-radius: 10px;
     padding: 15px;
     display: flex;
@@ -187,7 +195,7 @@ form {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     box-shadow: 0.3s ease;
-    cursor: pointer;
+    cursor: pointer;;
 }
 
 .blog-card:hover {
@@ -220,7 +228,7 @@ form {
 .published-blogs .blog-icon {
     position: absolute;
     top: 10px;
-    right: Asc 10px;
+    right: 10px;
     font-size: 20px;
     color: #d096ff;
 }
@@ -340,7 +348,6 @@ a:hover {
 
 label {
     display: inline-block;
-    margin-bottom: 5px;
     transition: color 0.3s ease;
 }
 
@@ -483,7 +490,7 @@ ul.nav-list li {
 
 ul li a {
     display: block;
-    color: #efd1fd;
+    color: #4b016d;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -501,6 +508,18 @@ nav .nav-list {
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+ul li a:hover {
+    background-color: #b868ff;
+    color: #ecd4f8;
+    border-radius: 4px;
+}
+
+ul li a.active {
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 6px;
 }
 
 .header-profile {
@@ -542,7 +561,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    background-color: #4b016d;
+    background-color: #efd1fd;
     padding: 15px;
     width: 100%;
     text-align: center;
@@ -551,15 +570,16 @@ header {
 }
 
 footer {
-    background-color: #4b016d;
-    color: #efd1fd;
+    background-color: #efd1fd;
+    color: #4b016d;
     text-align: center;
     padding: 15px;
     width: 100%;
     bottom: 0;
     left: 0;
     right: 0;
-    display: grid;
+    padding: 1.5rem;
+    margin-top: 4rem;
     position: fixed;
     z-index: 1;
 }
@@ -580,7 +600,7 @@ textarea {
     display: grid;
     grid-template-columns: 400px 600px;
     gap: 20px;
-    align-items: stretch;
+    align-items: center;
     max-width: 1200px;
     padding: 100px 80px;
     min-height: 400px;
