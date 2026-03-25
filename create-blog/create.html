@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Blog</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="create-blog-styles.css"/>
     <link rel="stylesheet" href="../styles.css"/>
     <script src="blog-script.js"></script>
     <script src="../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <header>
         <nav>
             <ul class="nav-list">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../profile.html">Profile</a></li>
+                <li><a href="../home/home.html">Home</a></li>
                 <li><a href="../contactus.html">Contact Us</a></li>
                 <li><a href="create.html" class="active">Create Blog</a></li>
             </ul>
-            <a href="profile.html" class="header-profile">
+            <a href="../profile.html" class="header-profile">
                 <div class="header-avatar"></div>
             </a>
         </nav>
@@ -35,7 +37,7 @@
                     <input type="text" id="title" name="title">
                 </div>
                 <div class="blog-category">
-                    <label for="category">Category:</label>
+                    <label for="category-dropdown">Category:</label>
                     <select id="category-dropdown" name="category">
                         <option value="" disabled selected>Select Category</option>
                         <option value="technology">Technology</option>
@@ -46,13 +48,11 @@
                     </select>
                 </div>
                 <div class="blog-image">
-                    <!-- Radio buttons -->
                     <div class="image-choice">
                         <label>Image Source:</label>
                         <label><input type="radio" name="imageType" value="url" checked> URL</label>
                         <label><input type="radio" name="imageType" value="file"> File</label>
                     </div>
-
                     <div id="url" class="url-image">
                         <label>Upload image by pasting its URL</label>
                         <input type="url" id="image-url" name="url">
@@ -61,16 +61,12 @@
                         <label for="image-file">Upload image by choosing a file</label>
                         <input type="file" id="image-file" name="image" accept="image/*">
                     </div>
-
-                    <!-- LIVE IMAGE PREVIEW -->
                     <div id="image-preview" class="image-preview"></div>
                 </div>
-
                 <div class="blog-content">
                     <label for="content">Content:</label>
                     <textarea id="content" name="content" placeholder="What's in your mind.."></textarea>
                 </div>
-
                 <button type="submit">Publish</button>
             </form>
         </section>

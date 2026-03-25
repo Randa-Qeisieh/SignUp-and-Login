@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         reader.readAsDataURL(file);
       } else {
-        alert('Please select a valid image file.');
+        Swal.fire('Error', 'Please select a valid image file!', 'error');
       }
     });
   }
@@ -75,47 +75,61 @@ if (savedImage && avatarLabel) {
   if (text) text.style.display = 'none';
 }
 
-// EmailJS v4 - Template ID verified & recipient fixed
-document.addEventListener('DOMContentLoaded', function() {
-  if (document.querySelector('.contact-form')) {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    script.onload = function() {
-      emailjs.init({ publicKey: "XRkQh4EJfDfnfeUWG" });
-      console.log('EmailJS ready - check dashboard for service_dvj4ufq + template_2mgglp4');
-    };
-    document.head.appendChild(script);
-  }
+// EmailJS
 
-  const contactForm = document.querySelector('.contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async function(event) {
-      event.preventDefault();
-      const formData = {
-        from_name: this.name.value || 'Anonymous',
-        from_email: this.email.value || '',
-        message: this.message.value || '',
-        to_email: 'randak832@gmail.com',
-        'user_email': this.email.value
-      };
-      try {
-        await emailjs.send('service_dvj4ufq', 'template_2mgglp4', formData);
-        alert('✅ Sent!');
-        this.reset();
-      } catch (error) {
-        console.error(error);
-        alert(`❌ Template/service mismatch. Dashboard check:\nService: service_dvj4ufq\nTemplate: template_ts1mcuu\nError: ${error.text || error.message}`);
-      }
-    });
-  }
+// Init EmailJS once 
+emailjs.init({ publicKey: "XRkQh4EJfDfnfeUWG" });
 
-  // Demo other forms
-  document.querySelectorAll('form:not(.contact-form)').forEach(form => {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(form));
-      console.log('Demo:', data);
-      alert('Demo submit');
-    });
-  });
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.querySelector('.contact-form');
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent page reload
+
+            // Disable button & show loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Sending...';
+
+            // Get & validate form data
+            const params = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                subject: document.getElementById('subject').value.trim(),
+                message: document.getElementById('message').value.trim(),
+            };
+
+            // Validation
+            if (!params.name || !params.email || !params.subject || !params.message) {
+                Swal.fire('Error', 'Please fill in all fields!', 'error');
+                resetButton();
+                return;
+            }
+            if (!/\S+@\S+\.\S+/.test(params.email)) {
+                Swal.fire('Error', 'Please enter a valid email address!', 'error');
+                resetButton();
+                return;
+            }
+
+            try {
+                // Send via EmailJS
+                await emailjs.send('service_bm4wl8v', 'template_7opo10p', params);
+                Swal.fire('Success!', '✅ Message sent successfully! We\'ll get back to you soon.', 'success');                contactForm.reset(); // Clear form
+            } catch (error) {
+                console.error('EmailJS error:', error);
+                Swal.fire('Error!', '❌ Failed to send message. Please try again or email us directly at radnak832@gmail.com', 'error');
+            } finally {
+                resetButton();
+            }
+        });
+    }
+
+    // Helper: Reset submit button
+    function resetButton() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Send message';
+    }
 });
+
+

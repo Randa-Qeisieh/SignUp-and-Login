@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="styles.css" />
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-<script src="script.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <header>
         <nav>
             <ul class="nav-list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="profile.html" class="active">Profile</a></li>
-                <li><a href="contactus.html">Contact Us</a></li>
-                <li><a href="create-blog/create.html">Create Blog</a></li>
+                <li><a href="../home/home.html">Home</a></li>
+                <li><a href="../contactus.html">Contact Us</a></li>
+                <li><a href="../create-blog/create.html">Create Blog</a></li>
             </ul>
-            <a href="profile.html" class="header-profile">
+            <a href="../profile.html" class="header-profile">
                 <div class="header-avatar"></div>
             </a>
         </nav>
@@ -26,13 +26,17 @@
     <div class="profile-container">
         <div class="profile-info">
             <div class="profile">
-                <h2>Lexi Bob</h2>
-                <p>lexi@gmail.com</p><br>
-                <label for="profile-upload" class="avatar-upload" id="avatar-label">
+                <div class="profile-text">
+                    <h2>Lexi Bob</h2>
+                    <p>lexi@gmail.com</p><br>
+                </div>
+                <div class="profile-image">
+                    <label for="profile-upload" class="avatar-upload" id="avatar-label">
                     <i class="fa-solid fa-camera"></i>
                     <span>Choose Photo</span>
                 </label>
                 <input type="file" id="profile-upload" accept="image/*" /><br>
+                </div>
             </div>
             <div class="profile-buttons">
             <button class="edit-profile">Edit Profile</button>

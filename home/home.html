@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../styles.css"/>
+    <link rel="stylesheet" href="home-style.css"/>
+    <script src="home-script.js"></script>
+    <script src="../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="home-page">
+    <header>
+        <nav>
+            <ul class="nav-list">
+                <li><a href="../home/home.html" class="active">Home</a></li>
+                <li><a href="../contactus.html">Contact Us</a></li>
+                <li><a href="../create-blog/create.html">Create Blog</a></li>
+            </ul>
+            <a href="../profile.html" class="header-profile">
+                <div class="header-avatar"></div>
+            </a>
+        </nav>
+    </header>
+    <main class="home-grid"> 
+        <section class="hero-section">
+            <h2>Welcome to Our Blog!</h2>
+            <p>Discover a world of insights, stories, and inspiration. Dive into our latest posts and explore the diverse perspectives of our passionate bloggers.</p>
+            <a href="../all-blogs/all-blogs.html" class="button">Explore Blogs</a>
+        </section>
+        <section class="aboutus-section">
+            <div class="aboutus-text">
+                <h2>About Us</h2>
+                <p>We are a community of passionate writers and readers who believe in the power of storytelling. Our mission is to create a platform where voices can be heard, ideas can be shared, and connections can be made. Whether you're here to read, write, or simply explore, we're glad to have you with us.</p>
+            </div>
+            <div class="aboutus-image">
+                <img src="../assets/images/removedbg.png" alt="about us">
+            </div>
+            </section>
+        <section class="whyus-section">
+            <h2>Why Us?</h2>
+            <p>Our blog is more than just a collection of articles; it's a vibrant community where creativity thrives. We offer a diverse range of topics, from technology and lifestyle to travel and health, ensuring there's something for everyone. Join us to share your stories, gain new insights, and connect with like-minded individuals.</p>
+        </section>
+        <section class="categories-section">
+            <h2>Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <h3>Technology</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa-solid fa-plane"></i>
+                    <h3>Travel</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa-solid fa-heart"></i>
+                    <h3>Lifestyle</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa-solid fa-apple-whole"></i>
+                    <h3>Health</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fa-solid fa-utensils"></i>
+                    <h3>Food</h3>
+                </div>
+            </div>
+        </section>
+        <section class="blogs-section">
+            <div>
+                <h2>Latest Blogs</h2>
+                <a href="../all-blogs/all-blogs.html" class="button">See All</a>
+                <div id="home-blogs-grid" class="blogs-grid"></div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>

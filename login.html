@@ -4,17 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <header>
         <nav>
             <ul class="nav-list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="contactus.html">Contact Us</a></li>
-                <li><a href="create-blog/create.html">Create Blog</a></li>
+                <li><a href="../home/home.html">Home</a></li>
+                <li><a href="../contactus.html">Contact Us</a></li>
+                <li><a href="../create-blog/create.html">Create Blog</a></li>
             </ul>
             <a href="profile.html" class="header-profile">
                 <div class="header-avatar"></div>
@@ -30,7 +32,7 @@
         <label for="password">Password</label><br />
         <input type="password" id="password" name="password" />
 
-        <a href="profile.html" class="button">Login</a>
+        <a href="home/home.html" class="button">Login</a>
 
         <p>You don't have an account? <a href="index.html">Sign Up</a><br /></p>
 
@@ -38,7 +40,7 @@
         </form>
     </div>
     <div class="image-container">
-        <img src="assets/images/loginimg.avif" alt="Login Image" />
+        <img src="assets/images/login.png" alt="Login Image" />
     </div>
     </div>
     <footer>

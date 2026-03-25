@@ -13,32 +13,33 @@ main {
     font-size: 17px;
     text-align: center;
     justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-top: 40px;
     padding-top: 10px;
-    padding-bottom: 10px;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
+.blog-header h2, .blog-header p {
+    color: #4b016d;
+}
+
 .blog-form-container {
     width: 100%;
     max-width: 900px;
-    margin: 10px auto;
-    padding: 20px;
+    margin: 5px auto;
+    padding: 15px;
     border: 2px solid #f4e6fb;
-    border-radius: 2%;
+    border-radius: 20px;
     box-shadow: 0 4px 15px rgba(230, 179, 254, 0.195);
-    background: white;
+    background: transparent;
 }
 
-/* Your old form grid - now flexible and wider */
 .blog-form { 
     display: grid; 
-    gap: 15px; 
-    padding: 10px;
-    max-width: 900px;     
+    gap: 5px; 
+    max-width: 900px;    
+    background: transparent; 
 }
 
 .blog-title,
@@ -48,20 +49,78 @@ main {
 }
 
 .blog-category {
-    width: 100%;
-    font-size: 16px;
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;  /* Auto spacing */
 }
 
-.category-dropdown {
-    margin: 10px;
+/* ============================================ */
+/* BEAUTIFUL CATEGORIES DROPDOWN STYLING */
+/* ============================================ */
+
+/* Main select styling */
+#category-dropdown {
+    appearance: none;
+    background: linear-gradient(135deg, #f8f4ff, #faf5ff);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234b016d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 20px;
+    padding: 14px 50px 14px 14px !important;  /* ✅ FIX: Perfect alignment (L/R balance) */
+    border: 2px solid #f4e6fb;
+    border-radius: 7px;
+    box-shadow: 0 4px 12px rgba(230, 179, 254, 0.2);
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif !important;  /* ✅ FIX: Matches all elements */
+    font-weight: 500;
+    color: #4b016d;
+    cursor: pointer;
+    width: 100%;  /* ✅ Ensures full width alignment */
+    box-sizing: border-box;  /* ✅ Prevents overflow */
+}
+
+/* Hover state */
+#category-dropdown:hover {
+    border-color: #d096ff;
+    transform: translateY(-1px);  /* Lift effect */
+}
+
+#category-dropdown:focus {
+    outline: none;  /* ✅ FIX: Removes black border */
+    border-color: #b366e0;  /* KEEP: Your purple border */
+}
+
+
+/* Selected option styling */
+#category-dropdown option {
+    padding: 12px 16px;
+    background: transparent;
+    color: #4b016d;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* Option hover (some browsers) */
+#category-dropdown option:hover {
+    background: linear-gradient(135deg, #d096ff, #f5d9ff) !important;
+    color: white;
+}
+
+/* Matches your home.js colors perfectly */
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    #category-dropdown {
+        font-size: 18px;  /* Touch-friendly */
+        padding: 16px 20px;
+        padding-right: 60px !important;
+    }
 }
 
 .blog-content {
     width: 100%;
 }
 
-/* ====================== IMAGE + RADIO + PREVIEW STYLING (NEW) ====================== */
 .image-choice {
     display: flex;
     gap: 25px;
@@ -98,14 +157,13 @@ main {
     font-size: 16px;
 }
 
-/* Live Preview Box */
 .image-preview {
     margin-top: 20px;
     text-align: center;
     padding: 15px;
     border: 2px dashed #f4e6fb;
     border-radius: 12px;
-    background: #fafafa;
+    background: transparent;
 }
 
 .image-preview img {
@@ -115,7 +173,6 @@ main {
     box-shadow: 0 4px 15px rgba(230, 179, 254, 0.3);
 }
 
-/* Wider inputs for left side */
 .blog-title input,
 .blog-category select,
 .blog-content textarea {
