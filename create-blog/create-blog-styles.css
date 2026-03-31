@@ -21,7 +21,7 @@ main {
 }
 
 .blog-header h2, .blog-header p {
-    color: #4b016d;
+    color: #32374E;
 }
 
 .blog-form-container {
@@ -29,9 +29,9 @@ main {
     max-width: 900px;
     margin: 5px auto;
     padding: 15px;
-    border: 2px solid #f4e6fb;
+    border: 2px solid #2596be;
     border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(230, 179, 254, 0.195);
+    box-shadow: 10px 10px 5px 0px rgba(215, 171, 147);
     background: transparent;
 }
 
@@ -51,14 +51,10 @@ main {
 .blog-category {
     display: flex;
     flex-direction: column;
-    gap: 8px;  /* Auto spacing */
+    gap: 8px;  
 }
 
-/* ============================================ */
-/* BEAUTIFUL CATEGORIES DROPDOWN STYLING */
-/* ============================================ */
 
-/* Main select styling */
 #category-dropdown {
     appearance: none;
     background: linear-gradient(135deg, #f8f4ff, #faf5ff);
@@ -66,54 +62,50 @@ main {
     background-repeat: no-repeat;
     background-position: right 16px center;
     background-size: 20px;
-    padding: 14px 50px 14px 14px !important;  /* ✅ FIX: Perfect alignment (L/R balance) */
-    border: 2px solid #f4e6fb;
+    padding: 14px 50px 14px 14px;  
+    border: 2px solid #2596be;
     border-radius: 7px;
-    box-shadow: 0 4px 12px rgba(230, 179, 254, 0.2);
     font-size: 16px;
-    font-family: 'Times New Roman', Times, serif !important;  /* ✅ FIX: Matches all elements */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: 500;
-    color: #4b016d;
+    color: #32374E;
     cursor: pointer;
-    width: 100%;  /* ✅ Ensures full width alignment */
-    box-sizing: border-box;  /* ✅ Prevents overflow */
+    width: 100%;  
+    box-sizing: border-box;  
 }
 
-/* Hover state */
+
 #category-dropdown:hover {
-    border-color: #d096ff;
-    transform: translateY(-1px);  /* Lift effect */
+    transform: translateY(-1px);  
 }
 
 #category-dropdown:focus {
-    outline: none;  /* ✅ FIX: Removes black border */
-    border-color: #b366e0;  /* KEEP: Your purple border */
+    outline: none; 
+    border-color: #2596be;  
 }
 
 
-/* Selected option styling */
+
 #category-dropdown option {
     padding: 12px 16px;
     background: transparent;
-    color: #4b016d;
+    color: #32374E;
     border-radius: 8px;
     font-weight: 500;
 }
 
-/* Option hover (some browsers) */
 #category-dropdown option:hover {
-    background: linear-gradient(135deg, #d096ff, #f5d9ff) !important;
+    background: linear-gradient(135deg, #d096ff, #f5d9ff);
     color: white;
 }
 
-/* Matches your home.js colors perfectly */
 
 /* Mobile optimization */
 @media (max-width: 768px) {
     #category-dropdown {
         font-size: 18px;  /* Touch-friendly */
         padding: 16px 20px;
-        padding-right: 60px !important;
+        padding-right: 60px;
     }
 }
 
@@ -138,7 +130,7 @@ main {
 }
 
 .image-choice input[type="radio"] {
-    accent-color: #6366f1;
+    accent-color: #32374E;
 }
 
 .url-image label,
@@ -152,7 +144,7 @@ main {
 .file-image input {
     width: 100%;
     padding: 12px;
-    border: 2px solid #f4e6fb;
+    border: 2px solid #2596be;
     border-radius: 8px;
     font-size: 16px;
 }
@@ -161,7 +153,7 @@ main {
     margin-top: 20px;
     text-align: center;
     padding: 15px;
-    border: 2px dashed #f4e6fb;
+    border: 2px dashed #95B2BF;
     border-radius: 12px;
     background: transparent;
 }
@@ -170,7 +162,7 @@ main {
     max-width: 100%;
     max-height: 300px;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(230, 179, 254, 0.3);
+    box-shadow: 10px 10px 5px 0px rgba(215, 171, 147);
 }
 
 .blog-title input,
@@ -178,7 +170,7 @@ main {
 .blog-content textarea {
     width: 100%;
     padding: 14px;
-    border: 2px solid #f4e6fb;
+    border: 2px solid #2596be;
     border-radius: 8px;
     font-size: 16px;
 }

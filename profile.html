@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="../script.js"></script>
+    <script src="../auth.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <header>
         <nav>
+            <a href="../home/home.html" class="logo">
+                <div class="logo-avatar">
+                    <img src="../assets/images/thoughtroam_icon_dark.png" alt="Blog Logo" class="header-logo"/>
+                </div>
+            </a>
             <ul class="nav-list">
                 <li><a href="../home/home.html">Home</a></li>
                 <li><a href="../contactus.html">Contact Us</a></li>
@@ -52,7 +59,7 @@
             <h3>My insights :</h3>
             <div class="published-blogs">
                 <div class="blog-card">
-                    <span class="blogs-number">34</span>
+                    <span class="blogs-number" id="blog-count">0</span>
                     <i class="fa-brands fa-blogger"></i>
                 </div>
                 <div class="blog-card">
@@ -68,7 +75,7 @@
                     <i class="fa-solid fa-comments"></i>
                 </div>
             </div><br>
-            <h3>My most popular blogs :</h3>
+            <h3>My latest blogs :</h3>
             <div class="top-blogs">
                 <p>1."10 Tech Gadgets That Changed My Life".</p>
                 <p>2."My Unforgettable Trip to Bali".</p>
@@ -77,8 +84,22 @@
             </div>
         </div>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Wait for auth.js loadUserData to run, then force update
+    setTimeout(() => {
+        const countEl = document.getElementById('blog-count');
+        if (countEl) {
+            const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+            countEl.textContent = user.blogs ? user.blogs.length : 0;
+        }
+    }, 500);
+});
+</script>
     <footer>
-        <p>&copy; 2026 Blog. All rights reserved.</p>
+        <p>&copy; 
+            <script>document.write(new Date().getFullYear());</script> 
+            Blog. All rights reserved.</p>
     </footer>
 </body>
 </html>
