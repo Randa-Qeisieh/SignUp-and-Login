@@ -103,7 +103,6 @@ form {
     align-items: center;
     border: 2px solid #95B2BF;
     border-radius: 15px;
-    box-shadow: 10px 10px 5px 0px rgba(215, 171, 147);
     padding: 5px;
     margin-top: 20px;
     width: 400px;
@@ -120,8 +119,79 @@ form {
     font-size: 17px;
     border: 2px solid #95B2BF;
     border-radius: 15px;
-    box-shadow: 10px 10px 5px 0px rgba(215, 171, 147);
     min-width: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.bio-left {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    height: 100%;
+}
+
+.bio-left h3,
+.bio-right h3 {
+    font-size: 17px;
+    color: #32374E;
+    margin-bottom: 4px;
+    font-weight: bold;
+}
+
+.bio-left p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #32374E;
+    opacity: 0.85;
+    margin: 0;
+    flex: 1;
+}
+
+.bio-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+}
+
+.stat-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+    justify-content: center;
+}
+
+.stat-card {
+    border: 2px solid #95B2BF;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    gap: 8px;
+    transition: transform 0.3s ease;
+    cursor: default;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: bold;
+    color: #32374E;
+    line-height: 1;
+}
+
+.stat-card i {
+    font-size: 24px;
+    color: #a4c1cb;
 }
 
 .profile-info .profile-text {
@@ -192,11 +262,7 @@ form {
 }
 
 .published-blogs {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 20px;
-    margin-bottom: 5px;
+    display: none; /* replaced by .stat-cards in the new bio layout */
 }
 
 .blog-card {
@@ -210,7 +276,6 @@ form {
     background: transparent;
     height: 100%;
     min-height: 100px;
-    box-shadow: 10px 10px 5px 0px rgba(215, 171, 147);
     transition: transform 0.3s ease;
     box-shadow: 0.3s ease;
     cursor: pointer;;
@@ -218,7 +283,6 @@ form {
 
 .blog-card:hover {
     transform: translateY(-5px);
-    box-shadow: 10px 10px 5px 0px rgba(215, 171, 147);
 }
 
 .blogs-number,
@@ -254,10 +318,35 @@ form {
 .top-blogs {
     display: flex;
     flex-direction: column;
-    font-style: italic;
-    line-height: 0.5;
-    margin-top: 7px;
+    gap: 8px;
+    margin-top: 10px;
     margin-left: 5px;
+}
+
+.top-blog-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.top-blog-num {
+    color: #95B2BF;
+    font-weight: 600;
+    flex-shrink: 0;
+    min-width: 18px;
+}
+
+.top-blog-title {
+    font-style: italic;
+    color: #32374E;
+}
+
+.top-blogs-empty {
+    font-style: italic;
+    color: #95B2BF;
+    font-size: 14px;
 }
 
 .image-container img {
@@ -316,8 +405,6 @@ button, .button {
 
 button:hover, .button:hover {
     background: linear-gradient(to right, #2596be, #95B2BF);
-    transform: translateY(-3px);
-    box-shadow: 10px 10px 5px 0px rgba(215, 171, 147);
     color: inherit;
 }
 
@@ -331,6 +418,7 @@ a {
     position: relative;
     transition: color 0.3s ease;
     display: inline-block;
+    color: #32374E;
 }
 
 a:hover::after {
@@ -530,7 +618,6 @@ ul li a.active {
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s ease;
     text-decoration: none;
 }
 
@@ -540,7 +627,6 @@ ul li a.active {
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    transition: all 0.3s ease;
 }
 
 .header-logo {
@@ -549,7 +635,7 @@ ul li a.active {
     height: 45px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     text-decoration: none;
 }
 
@@ -570,10 +656,6 @@ ul li a.active {
     color: white;
 }
 
-.header-profile:hover {
-    transform: scale(1.1);
-    box-shadow: 10px 10px 5px 0px rgba(215, 171, 147);
-}
 
 header {
     position: fixed;
@@ -606,7 +688,7 @@ textarea {
     padding: 12px 10px;
     margin: 8px 0 16px 0;
     display: block;
-    border: 1px solid #f4e6fb;
+    border: 1px solid #2596be;
     border-radius: 4px;
     box-sizing: border-box;
     transition: all 0.25s ease ;
@@ -663,10 +745,6 @@ textarea {
     background: transparent;
 }
 
-.contact-form .textarea{
-    border: 1px solid #2596be;
-}
-
 iframe {
     margin-top: 20px;
     padding-left: 15px;
@@ -686,14 +764,107 @@ iframe {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    transition: color 0.3s ease;
 }
 
 .header-profile.signup-mode:hover span {
-    color: #ecd4f8;
+    color: #e3dcce;
+    background-color: #2596be;
     border-radius: 4px;
 }
 
 .header-profile.signup-mode::after {
     display: none;
+}
+
+.my-blogs {
+    width: 100%;
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 10px 200px 40px 200px;
+    display: grid;
+    gap: 1rem;
+}
+
+.myblogs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.myblogs-header #add-blog {
+    width: auto;
+    padding: 10px 20px;
+    white-space: nowrap;
+}
+
+.my-blogs h1 {
+    font-size: 40px;
+    color: #32374E;
+}
+
+#profile-blogs-grid.all-blogs {      
+    margin-top: 0;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+#profile-blogs-grid.all-blogs .blog-card {
+    height: 350px;
+    background: transparent;
+}
+
+/*  PROFILE BLOG CARD ACTION BUTTONS */
+.profile-status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+.profile-card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.profile-action-btn {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.25s ease;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #32374E;
+}
+
+.edit-action-btn {
+    background: rgba(196, 216, 227, 0.35);
+}
+
+.edit-action-btn:hover {
+    background: linear-gradient(to right, #2596be, #95B2BF);
+    color: white;
+}
+
+.delete-action-btn {
+    background: rgba(245, 214, 214, 0.35);
+    color: #842029;
+}
+
+.delete-action-btn:hover {
+    background: linear-gradient(to right, #f5a9a9, #e05c5c);
+    color: white;
 }

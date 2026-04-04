@@ -162,7 +162,6 @@ main {
     max-width: 100%;
     max-height: 300px;
     border-radius: 8px;
-    box-shadow: 10px 10px 5px 0px rgba(215, 171, 147);
 }
 
 .blog-title input,

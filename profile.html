@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
+    <link rel="icon" type="image/png" href="../assets/images/thoughtroam_icon_dark.png"/>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="home/home-style.css">
+    <link rel="stylesheet" href="../all-blogs/all-blogs-styles.css">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <script src="../script.js"></script>
     <script src="../auth.js"></script>
+    <script src="./home/home-script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -24,6 +28,7 @@
                 <li><a href="../home/home.html">Home</a></li>
                 <li><a href="../contactus.html">Contact Us</a></li>
                 <li><a href="../create-blog/create.html">Create Blog</a></li>
+                <li><a href="./dashboard/dashboard.html">Dashboard</a></li>
             </ul>
             <a href="../profile.html" class="header-profile">
                 <div class="header-avatar"></div>
@@ -35,15 +40,15 @@
             <div class="profile">
                 <div class="profile-text">
                     <h2>Lexi Bob</h2>
-                    <p>lexi@gmail.com</p><br>
-                </div>
-                <div class="profile-image">
-                    <label for="profile-upload" class="avatar-upload" id="avatar-label">
-                    <i class="fa-solid fa-camera"></i>
-                    <span>Choose Photo</span>
+                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="86eae3feefc6e1ebe7efeaa8e5e9eb">[email&#160;protected]</a></p><br>
+            </div>
+            <div class="profile-image">
+                <label for="profile-upload" class="avatar-upload" id="avatar-label">
+                <i class="fa-solid fa-camera"></i>
+                <span>Choose Photo</span>
                 </label>
                 <input type="file" id="profile-upload" accept="image/*" /><br>
-                </div>
+            </div>
             </div>
             <div class="profile-buttons">
             <button class="edit-profile">Edit Profile</button>
@@ -51,36 +56,43 @@
         </div>
         </div>
         <div class="profile-bio">
-            <h3>About Me :</h3>
-            <p>
-            Passionate blogger writing about tech, travel, and life lessons. 
-            Always exploring new ideas and sharing stories that matter.</p>
-            <br>
-            <h3>My insights :</h3>
-            <div class="published-blogs">
-                <div class="blog-card">
-                    <span class="blogs-number" id="blog-count">0</span>
-                    <i class="fa-brands fa-blogger"></i>
+            <!-- Left column: about me only -->
+            <div class="bio-left">
+                <h3>About Me :</h3>
+                <p>I’m a passionate blogger who loves exploring and sharing stories at the intersection of tech, travel, and life lessons. With a strong background in technology and an endless curiosity for the world, I write about emerging digital trends, unique travel experiences, and the meaningful insights we gain from everyday moments.
+Whether I’m deep into coding sessions, wandering through new cities with my camera, or reflecting on personal growth, my aim is to create honest, relatable content that resonates with readers.
+If you’re into tech, travel, self-growth, or simply love a good story, I’m glad you’re here. Let’s explore, learn, and grow together, one post at a time. 💡✈️</p>
+            </div>
+            <!-- Right column: published blogs stats -->
+            <div class="bio-right">
+                <h3>Published Blogs :</h3>
+                <div class="stat-cards">
+                    <!-- Cards are injected by auth.js loadUserData() -->
                 </div>
-                <div class="blog-card">
-                    <span class="likes-number">2.4k</span>
-                    <i class="fa-solid fa-heart"></i>
-                </div>  
-                <div class="blog-card">
-                    <span class="views-numbers">65k</span>
-                    <i class="fa-solid fa-eye"></i>
-                </div>
-                <div class="blog-card">
-                    <span class="comments-number">590</span>
-                    <i class="fa-solid fa-comments"></i>
-                </div>
-            </div><br>
-            <h3>My latest blogs :</h3>
-            <div class="top-blogs">
-                <p>1."10 Tech Gadgets That Changed My Life".</p>
-                <p>2."My Unforgettable Trip to Bali".</p>
-                <p>3."5 Life Lessons I Learned in My 20s".</p>
-                <p>4."How I Built My Personal Brand Online".</p>
+            </div>
+        </div>
+    </div>
+    <div class="my-blogs">
+        <div class="myblogs-header">
+            <h1>My Blogs</h1>
+            <button id="add-blog" class="button">
+                <i class="fas fa-plus"></i> 
+                <a href="../create-blog/create.html">
+                Add New Blog
+                </a>
+            </button>
+        </div>
+        <div class="all-blogs myblogs-container" id="profile-blogs-grid"> 
+            <div class="edit-button">
+                <button class="edit-btn" data-blog-id="${blog.id || index}">
+                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                </button>
+            </div>
+            <div class="delete-button">
+                <button class="delete-btn" data-blog-id="${blog.id || index}">
+                    <i class="fa-solid fa-trash"></i> Delete
+                    <!-- i should display an alert -->
+                </button>
             </div>
         </div>
     </div>
@@ -99,7 +111,7 @@
     <footer>
         <p>&copy; 
             <script>document.write(new Date().getFullYear());</script> 
-            Blog. All rights reserved.</p>
+            Thought Roam. All rights reserved.</p>
     </footer>
 </body>
 </html>

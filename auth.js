@@ -34,18 +34,16 @@ function initAuth() {
     }
   });
 
-  // Blog form
+  // Blog form (create page) — auth.js only attaches image toggle/preview helpers here.
+  // The actual form submit is handled by blog-script.js on the create page.
   const blogForm = document.querySelector('.blog-form');
   if (blogForm) {
-    blogForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      handlePublishBlog();
-    });
-
     const imageTypeRadios = document.querySelectorAll('input[name="imageType"]');
     for (let radio of imageTypeRadios) radio.addEventListener('change', toggleImageInput);
-    document.getElementById('image-file').addEventListener('change', previewImage);
-    document.getElementById('image-url').addEventListener('input', previewUrlImage);
+    const imageFileEl = document.getElementById('image-file');
+    const imageUrlEl = document.getElementById('image-url');
+    if (imageFileEl) imageFileEl.addEventListener('change', previewImage);
+    if (imageUrlEl) imageUrlEl.addEventListener('input', previewUrlImage);
   }
 
   loadUserData();
@@ -160,7 +158,8 @@ function handleSignup() {
   saveUsers(users);
 
   Swal.fire('Success!', 'Account created! Redirecting...', 'success').then(() => {
-    window.location.href = `${toRoot()}home/home.html`;
+    const isAdmin = user.name.toLowerCase().split(' ')[0] === 'admin';
+    window.location.href = isAdmin ? `${toRoot()}dashboard/dashboard.html` : `${toRoot()}home/home.html`;
   });
 }
 
@@ -187,24 +186,29 @@ function handleLogin() {
 
   localStorage.setItem('currentUser', JSON.stringify(user));
   Swal.fire('Welcome!', `Hello ${user.name}!`, 'success').then(() => {
-    window.location.href = `${toRoot()}home/home.html`;
+    // FIX: was incorrectly `name` (undefined), now correctly `user.name`
+    const isAdmin = user.name.toLowerCase().split(' ')[0] === 'admin';
+    window.location.href = isAdmin ? `${toRoot()}dashboard/dashboard.html` : `${toRoot()}home/home.html`;
   });
 }
 
 // HEADER AUTH
 function updateHeaderAuth() {
   const profileLink = document.querySelector('.header-profile');
-  const createBlogLink = document.querySelector('a[href*="../create-blog/create.html"]');
+  const dashboardLink = document.querySelector('a[href*="dashboard"]');
+  const createBlogLink = document.querySelector('a[href*="create-blog"], a[href*="create.html"]');
+  const contactLink = document.querySelector('a[href*="contactus"]');
+  const allBlogsLink = document.querySelector('a[href*="all-blogs"]');
+
   if (!profileLink) return;
 
   const user = getCurrentUser();
   const root = toRoot();
   const currentPage = window.location.pathname;
 
-  // Hide the button entirely on auth pages
+  // Hide profile icon entirely on auth pages
   const authPages = ['index.html', 'login.html'];
   const onAuthPage = authPages.some(page => currentPage.endsWith(page));
-
   if (onAuthPage) {
     profileLink.style.display = 'none';
     return;
@@ -216,18 +220,48 @@ function updateHeaderAuth() {
     profileLink.href = `${root}index.html`;
     profileLink.classList.add('signup-mode');
     profileLink.classList.remove('logged-mode');
-
-    if (createBlogLink) {
-      createBlogLink.style.display = 'none';
-    }
+    if (createBlogLink) createBlogLink.parentElement.style.display = 'none';
+    if (dashboardLink) dashboardLink.parentElement.style.display = 'none';
 
   } else {
-    profileLink.style.display = '';
-    profileLink.innerHTML = '<div class="header-avatar"></div>';
-    profileLink.href = `${root}profile.html`;
-    profileLink.classList.add('logged-mode');
-    profileLink.classList.remove('signup-mode');
-    loadAvatarsToHeaders();
+    const isAdmin = user.name.toLowerCase().split(' ')[0] === 'admin';
+
+    if (isAdmin) {
+      // Admin: show logout button top-right, hide nav items not relevant to admin
+      profileLink.style.display = '';
+      profileLink.innerHTML = '<span>Logout</span>';
+      profileLink.href = '#';
+      profileLink.classList.add('signup-mode');
+      profileLink.classList.remove('logged-mode');
+      profileLink.onclick = (e) => { e.preventDefault(); logout(); };
+
+      if (contactLink) contactLink.parentElement.style.display = 'none';
+      if (allBlogsLink) allBlogsLink.parentElement.style.display = 'none';
+      if (createBlogLink) createBlogLink.parentElement.style.display = 'none';
+      if (dashboardLink) {
+        dashboardLink.parentElement.style.display = '';
+        dashboardLink.href = `${root}dashboard/dashboard.html`;
+      }
+
+      // Redirect admin away from any non-allowed page
+      const allowedForAdmin = ['home.html', 'dashboard.html'];
+      const onAllowedPage = allowedForAdmin.some(p => currentPage.endsWith(p));
+      if (!onAllowedPage) {
+        window.location.href = `${root}home/home.html`;
+        return;
+      }
+
+    } else {
+      // Normal logged-in user
+      profileLink.style.display = '';
+      profileLink.innerHTML = '<div class="header-avatar"></div>';
+      profileLink.href = `${root}profile.html`;
+      profileLink.classList.add('logged-mode');
+      profileLink.classList.remove('signup-mode');
+      loadAvatarsToHeaders();
+      if (dashboardLink) dashboardLink.parentElement.style.display = 'none';
+      if (createBlogLink) createBlogLink.parentElement.style.display = '';
+    }
   }
 }
 
@@ -319,80 +353,11 @@ function blogTitleValid(title) {
   return pattern.test(title);
 }
 
-// BLOG FUNCTIONS 
-function handlePublishBlog() {
-  if (!isLoggedIn()) {
-    Swal.fire('Login Required!', 'Please login first', 'warning');
-    window.location.href = `${toRoot()}login.html`;
-    return;
-  }
-
-  const title = document.getElementById('title').value.trim();
-  const category = document.getElementById('category-dropdown').value;
-  const content = document.getElementById('content').value.trim();
-
-  if (!title || !category || !content) {
-    Swal.fire('Error!', 'Title, category & content required', 'error');
-    return;
-  }
-
-  if (!blogTitleValid(title)) {
-    Swal.fire('Error!', 'Title must be 5-500 chars, letters/numbers/punctuation only', 'error');
-    return;
-  }
-
-  const imageUrlInput = document.getElementById('image-url').value.trim();
-  const imageFile = document.getElementById('image-file').files[0];
-
-  let image = null;
-  if (imageUrlInput) {
-    image = imageUrlInput;
-  } else if (imageFile) {
-    const reader = new FileReader();
-    reader.onload = () => publishBlog(reader.result);
-    reader.readAsDataURL(imageFile);
-    return;
-  }
-
-  publishBlog(image);
-}
-
-function publishBlog(imageData) {
-  const user = getCurrentUser();
-  const blog = {
-    id: Date.now().toString(),
-    title: document.getElementById('title').value.trim(),
-    category: document.getElementById('category-dropdown').value,
-    image: imageData,
-    content: document.getElementById('content').value.trim(),
-    date: new Date().toISOString(),
-    views: 0,
-    likes: 0,
-    comments: []
-  };
-
-  user.blogs.push(blog);
-
-  const users = getUsers();
-  const userIndex = users.findIndex(u => u.id === user.id);
-  if (userIndex !== -1) {
-    users[userIndex] = user;
-    saveUsers(users);
-  }
-
-  localStorage.setItem('currentUser', JSON.stringify(user));
-
-  document.querySelector('.blog-form').reset();
-  document.getElementById('image-preview').innerHTML = '';
-
-  Swal.fire('Success!', 'Blog published & saved!', 'success');
-}
-
+// IMAGE PREVIEW HELPERS (used on create page alongside blog-script.js)
 function toggleImageInput() {
   const urlDiv = document.getElementById('url');
   const fileDiv = document.getElementById('file');
   const selected = document.querySelector('input[name="imageType"]:checked').value;
-
   urlDiv.style.display = selected === 'url' ? 'block' : 'none';
   fileDiv.style.display = selected === 'file' ? 'block' : 'none';
 }
@@ -423,16 +388,49 @@ function loadUserData() {
 
   const user = getCurrentUser();
 
-  const profileName = document.querySelector('h2');
+  const profileName  = document.querySelector('h2');
   const profileEmail = document.querySelector('.profile-text p');
   if (profileName && (profileName.textContent.includes('Lexi Bob') || profileName.textContent === 'Your Name')) profileName.textContent = user.name;
   if (profileEmail) profileEmail.textContent = user.email;
 
-  const blogsEl = document.querySelector('.blogs-number');
-  if (blogsEl) blogsEl.textContent = user.blogs.length;
+  const approvedBlogs = (user.blogs || []).filter(b => b.status === 'approved');
 
-  //using console log for confirming everything is working
-  console.log(`✅ Loaded: ${user.name} (${user.blogs.length} blogs)`);
+  // Calculate total likes across all published blogs
+  const totalLikes = approvedBlogs.reduce((sum, blog) => {
+    try {
+      const likes = JSON.parse(localStorage.getItem(`likes_${blog.id}`) || '{"count":0}');
+      return sum + (likes.count || 0);
+    } catch { return sum; }
+  }, 0);
+
+  // Calculate total comments across all published blogs
+  const totalComments = approvedBlogs.reduce((sum, blog) => {
+    try {
+      const comments = JSON.parse(localStorage.getItem(`comments_${blog.id}`) || '[]');
+      return sum + comments.length;
+    } catch { return sum; }
+  }, 0);
+
+  // Render the 3 stat cards into .stat-cards
+  const statCards = document.querySelector('.stat-cards');
+  if (statCards) {
+    statCards.innerHTML = `
+      <div class="stat-card">
+        <span class="stat-number">${approvedBlogs.length}</span>
+        <i class="fa-brands fa-blogger"></i>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">${totalLikes}</span>
+        <i class="fa-solid fa-heart"></i>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">${totalComments}</span>
+        <i class="fa-solid fa-comment"></i>
+      </div>
+    `;
+  }
+
+  console.log(`✅ Loaded: ${user.name} (${(user.blogs || []).length} blogs)`);
 }
 
 //  LOGOUT 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" type="image/png" href="../assets/images/thoughtroam_icon_dark.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../styles.css"/>
+    <link rel="stylesheet" href="dashboard.-styles.css"/>
+<script src="../home/home-script.js"></script>
+<script src="dashboardjs.js"></script>
+    <script src="../script.js"></script>
+    <script src="../auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../home/home.html" class="logo">
+                <div class="logo-avatar">
+                    <img src="../assets/images/thoughtroam_icon_dark.png" alt="Blog Logo" class="header-logo"/>
+                </div>
+            </a>
+            <ul class="nav-list">
+                <li><a href="../home/home.html">Home</a></li>
+                <li><a href="dashboard.html" class="active">Admin Dashboard</a></li>
+            </ul>
+            <a href="../profile.html" class="header-profile">
+                <div class="header-avatar"></div>
+            </a>
+        </nav>
+    </header>
+    <main class="admin-dashboard">
+        <section class="pending-blogs-section">
+            <h2>Pending Blog Approvals</h2>
+            <div id="pending-blogs-container"></div>
+</section>
+    </main>
+    <footer>
+        <p>&copy; 
+            <script>document.write(new Date().getFullYear());</script> 
+            Thought Roam. All rights reserved.</p>
+    </footer>
+</body>
+</html>

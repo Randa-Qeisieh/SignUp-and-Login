@@ -1,0 +1,16 @@
+
+.approval-actions {
+  display: flex;
+  gap: 10px;
+  padding: 10px 15px;
+  border-top: 1px solid #95B2BF;
+}
+
+.approve-btn {
+  background: linear-gradient(to right, #a8d5a2, #6dbf67);
+}
+
+.reject-btn {
+  background: linear-gradient(to right, #f5a9a9, #e05c5c);
+  color: white;
+}

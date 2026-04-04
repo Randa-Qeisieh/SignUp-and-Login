@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Blogs</title>
+    <link rel="icon" type="image/png" href="../assets/images/thoughtroam_icon_dark.png"/>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -13,6 +14,7 @@
     <script src="../script.js"></script>
     <script src="../home/home-script.js"></script>
     <script src="../auth.js"></script>
+    <script src="all-blogs-script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
@@ -24,22 +26,56 @@
                 </div>
             </a>
             <ul class="nav-list">
-                <li><a href="../home/home.html">Home</a></li>
+                <li><a href="../home/home.html" class="active">Home</a></li>
                 <li><a href="../contactus.html">Contact Us</a></li>
                 <li><a href="../create-blog/create.html">Create Blog</a></li>
+                <li><a href="./dashboard/dashboard.html">Dashboard</a></li>
             </ul>
             <a href="../profile.html" class="header-profile">
                 <div class="header-avatar"></div>
             </a>
         </nav>
     </header>
-    <main> 
+      <main> 
+        <div class="all-blogs-header">
+            <!-- Search -->
+            <div class="search-blogs">
+                <form  class="search-bar">
+                    <label for="search-input">Search Blogs:</label>
+                    <input type="search" id="search-input" placeholder="Search blogs...">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-blogs">
+                    <label for="filter-dropdown">Filter by Category:</label>
+                    <select id="filter-dropdown" name="filter">
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="technology">Technology</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="travel">Travel</option>
+                        <option value="food">Food</option>
+                        <option value="health">Health</option>
+                    </select>
+                </div>
+                <div class="filter-blogs">
+                    <label for="sort-dropdown">Sort by:</label>
+                        <select id="sort-dropdown" name="sort">
+                        <option value="" disabled selected>Select Sort Option</option>
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <div id="all-blogs-grid" class="all-blogs"></div>
-    </main>
+        </main>
     <footer>
         <p>&copy; 
             <script>document.write(new Date().getFullYear());</script> 
-            Blog. All rights reserved.</p>
+            Thought Roam. All rights reserved.</p>
     </footer>
 </body>
 </html>
